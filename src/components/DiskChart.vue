@@ -213,7 +213,6 @@ async function update() {
 	if (lastTimeFrame !== currentTimeFrame) {
 		await update();
 	}
-	isUpdating = false;
 }
 
 const preupdateChartRealtime = async () => {

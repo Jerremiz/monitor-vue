@@ -3,7 +3,7 @@
     <header class="header">
       <ReconnectingAlert :isReconnecting="isReconnecting" />
       <h1>Perf Metrics</h1>
-      <p>By Jeremy Zhao</p>
+      <p>Ver. 1.0</p>
       <div class="toggle-mode" title="切换主题" @click="toggleTheme">
         <svg class="light-icon" viewBox="0 0 32 32" v-show="!isDarkMode">
           <path d="M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6z" fill="currentColor"></path>
@@ -87,7 +87,7 @@ const toggleTheme = () => {
   left: 50%;
   bottom: 0;
   transform: translateX(100%);
-  margin-left: 1rem;
+  margin-left: 4.5rem;
 }
 
 .toggle-mode {
@@ -121,7 +121,7 @@ const toggleTheme = () => {
 }
 
 /* 移动端适配 */
-@media (max-width: 900px) {
+@media (max-width: 750px) {
   .header p {
     display: none;
   }

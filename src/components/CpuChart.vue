@@ -216,7 +216,6 @@ async function update() {
 	if (lastTimeFrame !== currentTimeFrame) {
 		await update();
 	}
-	isUpdating = false;
 }
 
 // 更新实时数据预处理
