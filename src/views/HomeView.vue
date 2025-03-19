@@ -3,7 +3,9 @@
     <header class="header">
       <ReconnectingAlert :isReconnecting="isReconnecting" />
       <h1>Perf Metrics</h1>
-      <p>Ver. 1.0</p>
+      <a class="repo-link" href="https://github.com/Jerremiz/monitor-java" target="_blank" title="GitHub Repo">
+        <img alt="GitHub Release" :src="computedBadgeUrl">
+      </a>
       <div class="toggle-mode" title="切换主题" @click="toggleTheme">
         <svg class="light-icon" viewBox="0 0 32 32" v-show="!isDarkMode">
           <path d="M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6z" fill="currentColor"></path>
@@ -23,10 +25,11 @@
     </header>
     <main class="main-content">
       <div class="card-container">
-        <Card v-for="card in cards" :key="card.id" :card="card" :isDarkMode="isDarkMode"/>
+        <Card v-for="card in cards" :key="card.id" :card="card" :isDarkMode="isDarkMode" />
       </div>
     </main>
     <footer class="footer">
+      <a href="https://github.com/Jerremiz/monitor-java" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub <svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a>
       <p>Copyright © 2024-2025 Jeremy Zhao</p>
       <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2024179484号-1</a>
     </footer>
@@ -34,7 +37,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { checkReconnectState } from '@/utils/getRealTimeData';
 import Card from '@/components/MetricsCard.vue';
 import ReconnectingAlert from '@/components/ReconnectingAlert.vue';
@@ -61,6 +64,12 @@ const toggleTheme = () => {
   document.body.classList.toggle('dark-theme', isDarkMode.value);
   localStorage.setItem('isDarkMode', isDarkMode.value);
 };
+
+// 根据主题计算徽章背景颜色
+const computedBadgeUrl = computed(() => {
+  const bgColor = isDarkMode.value ? '2e303e' : 'f8f7fa';
+  return `https://img.shields.io/github/v/release/Jerremiz/monitor-java?style=flat-square&label=&color=${bgColor}`;
+});
 </script>
 
 <style scoped>
@@ -82,12 +91,16 @@ const toggleTheme = () => {
   font-size: 2.5rem;
 }
 
-.header p {
+.repo-link {
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: -0.3rem;
   transform: translateX(100%);
-  margin-left: 4.5rem;
+  margin-left: 4rem;
+}
+
+.repo-link img {
+  height: 1.3rem;
 }
 
 .toggle-mode {
@@ -122,7 +135,7 @@ const toggleTheme = () => {
 
 /* 移动端适配 */
 @media (max-width: 750px) {
-  .header p {
+  .repo-link {
     display: none;
   }
 }
