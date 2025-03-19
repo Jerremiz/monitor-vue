@@ -101,6 +101,7 @@ const computedBadgeUrl = computed(() => {
 
 .repo-link img {
   height: 1.3rem;
+  border-radius: 6px;
 }
 
 .toggle-mode {
